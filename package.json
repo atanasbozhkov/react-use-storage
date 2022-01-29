@@ -1,22 +1,22 @@
 {
-  "name": "react-use-localstorage",
+  "name": "react-use-storage",
   "version": "3.5.3",
-  "description": "Use Local Storage with React hooks",
-  "author": "Sung Kim <sungmkim80@gmail.com>",
+  "description": "Use Local\\Session Storage with React hooks",
+  "author": "Atanas Bozhkov <bozhkov.atanas@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dance2die/react-use-localstorage.git"
+    "url": "https://github.com/atanasbozhkov/react-use-storage.git"
   },
-  "homepage": "https://github.com/dance2die/react-use-localstorage",
-  "main": "dist/react-use-localstorage.esm.js",
-  "umd:main": "dist/react-use-localstorage.umd.production.js",
-  "module": "dist/react-use-localstorage.esm.js",
+  "homepage": "https://github.com/atanasbozhkov/react-use-storage",
+  "main": "dist/react-use-storage.esm.js",
+  "umd:main": "dist/react-use-storage.umd.production.js",
+  "module": "dist/react-use-storage.esm.js",
   "typings": "dist/index.d.ts",
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --env=jsdom",
+    "test": "tsdx test --env=jsdom --watch",
     "version:alpha": "npm version prerelease --preid=alpha",
     "publish:alpha": "npm publish --tag alpha",
     "prepublishOnly": "tsdx build"
