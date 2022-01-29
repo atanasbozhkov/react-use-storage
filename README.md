@@ -1,4 +1,4 @@
-# react-use-localstorage
+# react-use-storage
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors)
 
@@ -8,7 +8,9 @@ _depends on stable v16.8.1~_
 ![size](https://img.shields.io/bundlephobia/min/react-use-localstorage.svg?style=flat-square)
 ![minzippedsize](https://img.shields.io/bundlephobia/minzip/react-use-localstorage.svg?style=flat-square)
 
-Access [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) using [React hooks](https://reactjs.org/docs/hooks-intro.html).
+Access [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) and [Session Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) using [React hooks](https://reactjs.org/docs/hooks-intro.html).
+
+Project is a fork of [react-use-localstorage](https://github.com/dance2die/react-use-localstorage)
 
 Fork it on CodeSandbox  
 [![Edit usestate-useeffect](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/09xj95vxl)
@@ -18,7 +20,7 @@ Fork it on CodeSandbox
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import useLocalStorage from 'react-use-localstorage';
+import useLocalStorage from 'react-use-storage';
 
 import './styles.css';
 
@@ -45,6 +47,45 @@ function App() {
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(<App />, rootElement);
+```
+
+### UseStorage Options
+
+You can configure the storage type and pass custom (de)serializers to `useLocalStorage`
+
+```typescript
+function useStorage<T>(
+  key: string,
+  initialValue: T,
+  options?: UseStorageOptions<T>
+): [T, Dispatch<T>];
+
+export interface UseStorageOptions<T> {
+  serializer?: (input: T) => string;
+  deserializer?: (input: string) => T;
+  type?: 'session' | 'local';
+}
+```
+
+Here is an example for adding support for storing [Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) in local storage
+
+```javascript
+const mapSerializer = (value) => {
+  const serializedMap = JSON.stringify(Object.fromEntries(value));
+  return serializedMap;
+},
+const mapDeserializer = (value) => {
+  const deserializedMap = new Map<string, string>(
+  Object.entries(JSON.parse(value))
+);
+  return deserializedMap;
+},
+
+const [map, setMap] = useStorage<Map<string, string>>('KEY', new Map(), {
+  serializer: mapSerializer,
+  deserializer: mapDeserializer
+}
+
 ```
 
 ### Note for SSR (server-side rendering)
@@ -167,6 +208,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/all-contri
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
