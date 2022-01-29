@@ -8,12 +8,12 @@ _depends on stable v16.8.1~_
 ![size](https://img.shields.io/bundlephobia/min/react-use-localstorage.svg?style=flat-square)
 ![minzippedsize](https://img.shields.io/bundlephobia/minzip/react-use-localstorage.svg?style=flat-square)
 
-Access [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) and [Session Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) using [React hooks](https://reactjs.org/docs/hooks-intro.html).
+Access [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) and [Session Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) using [React hooks](https://reactjs.org/docs/hooks-intro.html). With support for:
+- Typescript
+- Custom Serializers/Deserializers
+- Local Storage and Session Storage
 
 Project is a fork of [react-use-localstorage](https://github.com/dance2die/react-use-localstorage)
-
-Fork it on CodeSandbox  
-[![Edit usestate-useeffect](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/09xj95vxl)
 
 ## How to use it
 
@@ -25,7 +25,7 @@ import useLocalStorage from 'react-use-storage';
 import './styles.css';
 
 function App() {
-  const [item, setItem] = useLocalStorage('name', 'Initial Value');
+  const [item, setItem] = useStorage<string>('name', 'Initial Value');
 
   return (
     <div className="App">
@@ -67,7 +67,9 @@ export interface UseStorageOptions<T> {
 }
 ```
 
-Here is an example for adding support for storing [Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) in local storage
+### Custom Serializers/Deserializers Example:
+You can add support for storing values as long as you are able to serialize and deserialize them from strings.
+Basic example for storing [Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) in local storage
 
 ```javascript
 const mapSerializer = (value) => {
