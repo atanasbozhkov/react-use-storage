@@ -1,5 +1,5 @@
 {
-  "name": "@nasco/react-use-storage",
+  "name": "@bozhkovatanas/react-use-storage",
   "version": "1.0.0",
   "description": "Use Local\\Session Storage with React hooks",
   "author": "Atanas Bozhkov <bozhkov.atanas@gmail.com>",
