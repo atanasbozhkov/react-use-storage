@@ -1,4 +1,4 @@
-# @nasco/react-use-storage
+# @bozhkovatanas/react-use-storage
 
 _depends on stable v16.8.1~_
 
@@ -17,7 +17,7 @@ Project is a fork of [react-use-localstorage](https://github.com/dance2die/react
 ### Basic Hook Usage
 
 ```javascript
-import useLocalStorage from '@nasco/react-use-storage';
+import useLocalStorage from '@bozhkovatanas/react-use-storage';
 const [item, setItem] = useStorage < string > ('name', 'Initial Value');
 ```
 
@@ -26,7 +26,7 @@ const [item, setItem] = useStorage < string > ('name', 'Initial Value');
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import useLocalStorage from '@nasco/react-use-storage';
+import useLocalStorage from '@bozhkovatanas/react-use-storage';
 
 import './styles.css';
 
