@@ -1,14 +1,11 @@
 # react-use-storage
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors)
-
 _depends on stable v16.8.1~_
 
-![version](https://img.shields.io/npm/v/react-use-localstorage.svg?style=flat-square)
-![size](https://img.shields.io/bundlephobia/min/react-use-localstorage.svg?style=flat-square)
-![minzippedsize](https://img.shields.io/bundlephobia/minzip/react-use-localstorage.svg?style=flat-square)
+Access [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) and [Session Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) using [React hooks](https://reactjs.org/docs/hooks-intro.html).
 
-Access [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) and [Session Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) using [React hooks](https://reactjs.org/docs/hooks-intro.html). With support for:
+With support for:
+
 - Typescript
 - Custom Serializers/Deserializers
 - Local Storage and Session Storage
@@ -16,6 +13,15 @@ Access [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/l
 Project is a fork of [react-use-localstorage](https://github.com/dance2die/react-use-localstorage)
 
 ## How to use it
+
+### Basic Hook Usage
+
+```javascript
+import useLocalStorage from 'react-use-storage';
+const [item, setItem] = useStorage < string > ('name', 'Initial Value');
+```
+
+### Full example
 
 ```javascript
 import React from 'react';
@@ -25,7 +31,7 @@ import useLocalStorage from 'react-use-storage';
 import './styles.css';
 
 function App() {
-  const [item, setItem] = useStorage<string>('name', 'Initial Value');
+  const [item, setItem] = useStorage < string > ('name', 'Initial Value');
 
   return (
     <div className="App">
@@ -51,7 +57,7 @@ ReactDOM.render(<App />, rootElement);
 
 ### UseStorage Options
 
-You can configure the storage type and pass custom (de)serializers to `useLocalStorage`
+You can configure the storage type and pass custom (de)serializers to `useLocalStorage`.
 
 ```typescript
 function useStorage<T>(
@@ -63,11 +69,16 @@ function useStorage<T>(
 export interface UseStorageOptions<T> {
   serializer?: (input: T) => string;
   deserializer?: (input: string) => T;
-  type?: 'session' | 'local';
+  type?: 'session' | 'local'; // Will default to 'local'
 }
 ```
 
+### Option Defaults
+
+If no options are provided - `useStorage` will default to localStorage and `JSON.strinfigy` and `JSON.parse` will be used for serializing.
+
 ### Custom Serializers/Deserializers Example:
+
 You can add support for storing values as long as you are able to serialize and deserialize them from strings.
 Basic example for storing [Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) in local storage
 
