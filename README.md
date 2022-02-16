@@ -17,8 +17,8 @@ Project is a fork of [react-use-localstorage](https://github.com/dance2die/react
 ### Basic Hook Usage
 
 ```javascript
-import useLocalStorage from '@bozhkovatanas/react-use-storage';
-const [item, setItem] = useStorage < string > ('name', 'Initial Value');
+import useStorage from '@bozhkovatanas/react-use-storage';
+const [item, setItem] = useStorage<string>('name', 'Initial Value');
 ```
 
 ### Full example
@@ -26,12 +26,12 @@ const [item, setItem] = useStorage < string > ('name', 'Initial Value');
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import useLocalStorage from '@bozhkovatanas/react-use-storage';
+import useStorage from '@bozhkovatanas/react-use-storage';
 
 import './styles.css';
 
 function App() {
-  const [item, setItem] = useStorage < string > ('name', 'Initial Value');
+  const [item, setItem] = useStorage<string>('name', 'Initial Value');
 
   return (
     <div className="App">
@@ -114,7 +114,7 @@ const useSsrLocalStorage = (
 ): [string, React.Dispatch<string>] => {
   return typeof window === 'undefined'
     ? [initial, (value: string) => undefined]
-    : useLocalStorage(key, initial);
+    : useStorage(key, initial);
 };
 ```
 
